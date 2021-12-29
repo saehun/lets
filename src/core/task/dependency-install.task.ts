@@ -32,8 +32,12 @@ export class DependencyInstallTask implements Task {
     await fs.appendFile('.gitignore', bin === 'yarn' ? ignoreForYarn : ignoreForNpm);
   }
 
-  async onError() {
+  async onErrorBefore() {
     console.warn(`Failed to install packages...`);
+  }
+
+  async onErrorAfter() {
+    /** noop */
   }
 }
 

@@ -23,8 +23,10 @@ export class TaskRunner {
 
     try {
       for (const task of this.tasks) {
-        onErrorStack.push(task.onError.bind(task));
+        onErrorStack.push(task.onErrorBefore.bind(task));
         await task.execute();
+        onErrorStack.pop();
+        onErrorStack.push(task.onErrorAfter.bind(task));
       }
     } catch (e) {
       for (const onError of onErrorStack.reverse()) {

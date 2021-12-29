@@ -16,7 +16,11 @@ export class ChangeDirectoryTask implements Task {
     process.chdir(path.join(this.basedir, this.target));
   }
 
-  async onError(): Promise<void> {
+  async onErrorBefore(): Promise<void> {
+    /** noop */
+  }
+
+  async onErrorAfter(): Promise<void> {
     process.chdir(this.basedir);
   }
 }

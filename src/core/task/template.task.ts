@@ -34,7 +34,11 @@ export class TemplateTask implements Task {
     await this.interpolateAll(this.targetPath, this.context);
   }
 
-  async onError(): Promise<void> {
+  async onErrorBefore(): Promise<void> {
+    this.clean(this.targetPath);
+  }
+
+  async onErrorAfter(): Promise<void> {
     this.clean(this.targetPath);
   }
 

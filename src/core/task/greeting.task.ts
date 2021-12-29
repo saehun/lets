@@ -13,13 +13,24 @@ export class GreetingTask implements Task {
   async execute() {
     await clipboardy.write(`cd ${this.projectName}`);
     console.log(
-      boxen([`${chalk.greenBright(this.projectName)} is generated ✨`, `cd ${this.projectName} (copied)`].join('\n'), {
-        padding: 2,
-      })
+      boxen(
+        [
+          `${chalk.greenBright(this.projectName)} is generated ✨`,
+          `cd ${this.projectName} (copied)`,
+          chalk.grey(`tip: 'lets github' to create remote repository`),
+        ].join('\n'),
+        {
+          padding: 2,
+        }
+      )
     );
   }
 
-  async onError() {
+  async onErrorBefore() {
+    /** noop */
+  }
+
+  async onErrorAfter() {
     /** noop */
   }
 }

@@ -14,7 +14,11 @@ export class GitInitializeTask implements Task {
     }
   }
 
-  async onError() {
+  async onErrorBefore() {
     console.warn(`Failed to initialize git...`);
+  }
+
+  async onErrorAfter() {
+    /** noop */
   }
 }
