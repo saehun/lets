@@ -2,8 +2,8 @@ import { Task } from './task';
 import execa from 'execa';
 import * as fs from 'fs-extra';
 
-export class CommitTask implements Task {
-  constructor(private readonly message: string) {}
+export class PushTask implements Task {
+  constructor(private readonly remote: string, private readonly branch: string) {}
 
   async canExecute() {
     const children = await fs.readdir(process.cwd());
@@ -15,19 +15,18 @@ export class CommitTask implements Task {
   }
 
   get name() {
-    return `Commit(${this.message})`;
+    return `Push(${this.remote}/${this.branch})`;
   }
 
   async execute() {
-    await execa('git', ['add', '.']);
-    await execa('git', ['commit', '-m', this.message]);
+    await execa('git', ['push', this.remote, this.branch]);
   }
 
   async onErrorBefore() {
-    console.error(`Cannot commit and push to git`);
+    console.error(`Cannot push to ${this.remote}/${this.branch}`);
   }
 
   async onErrorAfter() {
-    await execa('git', ['reset', 'HEAD^']);
+    console.error(`Please manually revert pushed revision (e.g. reset and force push)`);
   }
 }

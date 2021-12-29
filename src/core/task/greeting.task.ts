@@ -35,7 +35,7 @@ export class GreetingTask implements Task {
     this.greet(
       `${chalk.greenBright(projectName)} is generated ✨`,
       `cd ${projectName} (copied)`,
-      chalk.grey(`tip: 'lets github' to create remote repository`)
+      chalk.grey(`tip: 'lets github' to create a remote repository`)
     );
   }
 
