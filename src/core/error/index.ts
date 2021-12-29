@@ -7,8 +7,8 @@ export class BaseError extends Error {
 }
 
 export class AbortException extends BaseError {
-  constructor(message: string) {
-    super(message);
+  constructor(message?: string) {
+    super(message ?? `aborted, bye bye 👋`);
   }
 }
 
@@ -22,12 +22,23 @@ given: '${given}'
   }
 }
 
-export function handleErrorAndExit(e: any) {
+export class TaskNotAvailableError extends BaseError {
+  constructor(taskName: string, reason: string) {
+    super(`Cannot execute '${taskName}':\n    ${reason}`);
+  }
+}
+
+export class TaskFailureError extends BaseError {
+  constructor(e: any) {
+    super(e.message);
+  }
+}
+
+export function handleErrorAndExit(e: any): never {
   if (e instanceof BaseError) {
     console.error(e.message);
     process.exit(0);
   }
 
-  console.error(e);
-  process.exit(1);
+  throw e;
 }
