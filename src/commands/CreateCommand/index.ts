@@ -40,7 +40,7 @@ export class CreateCommand extends Command {
       .register(new ChangeDirectoryTask(projectName))
       .register(new DependencyInstallTask(this.packageManager))
       .register(new GitInitializeTask(this.git))
-      .register(new GreetingTask(projectName))
+      .register(new GreetingTask({ type: 'create', projectName }))
       .run();
 
     return 0;
