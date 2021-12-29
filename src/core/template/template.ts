@@ -1,3 +1,4 @@
-export class Template {
-  constructor(private readonly name: string, private readonly dir: string) {}
+export interface Template {
+  name: string;
+  dir: string;
 }

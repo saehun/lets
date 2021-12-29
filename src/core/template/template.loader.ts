@@ -7,10 +7,10 @@ import { NotFoundException } from '../error';
 import { Template } from './template';
 
 export class TemplateLoader {
-  private constructor(private readonly dir = path.join(__dirname, '..', '..', '..', 'resources', 'templates')) {}
+  constructor(private readonly dir = path.join(__dirname, '..', '..', '..', 'resources', 'templates')) {}
 
   async load(name?: string): Promise<Template> {
-    const list = await this.list();
+    const list = await this.list(this.dir);
 
     if (name == null) {
       name = await this.select(list.map(item => item.name));
@@ -22,7 +22,10 @@ export class TemplateLoader {
       throw new NotFoundException('Template', list.map(prop('name')).join('\n'), name);
     }
 
-    return new Template(selected.name, selected.path);
+    return {
+      dir: selected.path,
+      name: selected.name,
+    };
   }
 
   private async select(candidates: string[]): Promise<string> {
@@ -30,6 +33,7 @@ export class TemplateLoader {
       {
         name: 'name',
         type: 'select',
+        message: 'Select a template to start with',
         choices: candidates.map(candidate => ({
           title: candidate,
           value: candidate,
@@ -41,12 +45,12 @@ export class TemplateLoader {
     return name;
   }
 
-  private async list() {
-    const children = await fs.readdir(this.dir, { withFileTypes: true });
+  private async list(basePath: string) {
+    const children = await fs.readdir(basePath, { withFileTypes: true });
     return children
-      .filter(child => !child.isFile)
+      .filter(child => !child.isFile())
       .map(child => ({
-        path: path.join(this.dir, child.name),
+        path: path.join(basePath, child.name),
         name: child.name,
       }));
   }
