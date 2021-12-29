@@ -61,6 +61,7 @@
     "boxen": "^5",
     "chalk": "^4.0.0",
     "clipanion": "^3.2.0-rc.4",
+    "clipboardy": "^2",
     "dotenv": "^10.0.0",
     "execa": "^5",
     "fs-extra": "^10.0.0",
