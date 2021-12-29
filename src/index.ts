@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-require('dotenv').config();
+require('dotenv').config({ path: require.resolve('../.env') });
 import { Builtins, Cli } from 'clipanion';
 
 import { NewCommand } from './commands/NewCommand';
@@ -12,6 +12,4 @@ const cli = new Cli({
 
 [NewCommand, Builtins.HelpCommand, Builtins.VersionCommand].forEach(command => cli.register(command));
 
-cli.runExit(process.argv.slice(2)).catch(e => {
-  handleErrorAndExit(e);
-});
+cli.run(process.argv.slice(2));
