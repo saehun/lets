@@ -23,6 +23,7 @@
     "@types/handlebars": "^4.1.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.9.4",
+    "@types/prompts": "^2.0.14",
     "@types/ramda": "^0.27.62",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
@@ -56,11 +57,14 @@
   },
   "dependencies": {
     "@sindresorhus/is": "^4.2.0",
+    "boxen": "^5",
     "chalk": "^5.0.0",
+    "clipanion": "^3.2.0-rc.4",
     "dotenv": "^10.0.0",
     "execa": "^5",
     "fs-extra": "^10.0.0",
     "handlebars": "^4.7.7",
+    "prompts": "^2.4.2",
     "ramda": "^0.27.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2"

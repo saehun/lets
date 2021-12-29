@@ -8,15 +8,11 @@
     "sourceMap": true,
     "outDir": "dist",
     "declaration": true,
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "dom", "esnext" ]
+    "lib": ["esnext"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "**/*.test.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["**/*.test.ts"]
 }
-
