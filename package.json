@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
-  "main": "dist/index.js",
   "repository": "minidonut/create",
   "scripts": {
     "build": "tsc",
+    "postbuild": "scripts/register.sh",
     "test": "NODE_ENV=test jest",
     "lint": "eslint . --ext .js,.ts",
     "start": "ts-node src/index.ts",
@@ -25,6 +25,7 @@
     "@types/node": "^16.9.4",
     "@types/prompts": "^2.0.14",
     "@types/ramda": "^0.27.62",
+    "@types/rimraf": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "eslint": "^7.32.0",
@@ -58,15 +59,20 @@
   "dependencies": {
     "@sindresorhus/is": "^4.2.0",
     "boxen": "^5",
-    "chalk": "^5.0.0",
+    "chalk": "^4.0.0",
     "clipanion": "^3.2.0-rc.4",
     "dotenv": "^10.0.0",
     "execa": "^5",
     "fs-extra": "^10.0.0",
     "handlebars": "^4.7.7",
+    "node-peco": "^0.1.6",
+    "ora": "^5",
     "prompts": "^2.4.2",
     "ramda": "^0.27.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2"
+  },
+  "bin": {
+    "create": "dist/index.js"
   }
 }
