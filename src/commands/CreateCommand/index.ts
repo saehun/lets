@@ -2,6 +2,7 @@ import { Command, Option } from 'clipanion';
 import { loadGithubConfig } from '../../core/config/github.config';
 import { HandleKnownException } from '../../core/decorators/HandleKnownException';
 import { ChangeDirectoryTask } from '../../core/task/change-directory.task';
+import { CommitTask } from '../../core/task/commit.task';
 import { DependencyInstallTask } from '../../core/task/dependency-install.task';
 import { GitInitializeTask } from '../../core/task/git-initialize.task';
 import { GreetingTask } from '../../core/task/greeting.task';
@@ -40,6 +41,7 @@ export class CreateCommand extends Command {
       .register(new ChangeDirectoryTask(projectName))
       .register(new DependencyInstallTask(this.packageManager))
       .register(new GitInitializeTask(this.git))
+      .register(new CommitTask('Initialize'))
       .register(new GreetingTask({ type: 'create', projectName }))
       .run();
 

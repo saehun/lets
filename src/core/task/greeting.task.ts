@@ -44,7 +44,7 @@ export class GreetingTask implements Task {
   }
 
   private greet(...messages: string[]): void {
-    console.log(boxen(messages.join('\n')), { padding: 2 });
+    console.log(boxen(messages.join('\n'), { padding: 2 }));
   }
 
   async onErrorBefore() {

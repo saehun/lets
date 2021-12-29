@@ -1,5 +1,7 @@
 import { Task } from './task';
-import { Got, RequestError, Response } from 'got';
+import execa from 'execa';
+import { Got, RequestError } from 'got';
+import { Loading } from '../decorators/Loading';
 
 export class CreateRepositoryTask implements Task {
   private readonly uri: string;
@@ -13,7 +15,7 @@ export class CreateRepositoryTask implements Task {
 
   async canExecute() {
     try {
-      await this.client.get(`/repos/${this.uri}`);
+      await this.client.get(`repos/${this.uri}`);
       return {
         available: false,
         reason: `https://github.com/${this.uri} already exist`,
@@ -35,14 +37,27 @@ export class CreateRepositoryTask implements Task {
   }
 
   async execute() {
-    await this.client
-      .post('/user/repos', {
+    const gitUrl = await this.createRepository(this.option.repositoryName, this.option.private);
+    await this.setRemoteOrigin(gitUrl);
+  }
+
+  @Loading(args => `Create new repository '${args[0]}'(${args[1] ? 'private' : 'public'})`)
+  private async createRepository(name: string, isPrivate: boolean): Promise<string> {
+    const { ssh_url } = await this.client
+      .post('user/repos', {
         json: {
-          name: this.option.repositoryName,
-          private: this.option.private,
+          name,
+          private: isPrivate,
         },
       })
-      .json<Response<{ html_url: string }>>();
+      .json<{ html_url: string; ssh_url: string }>();
+
+    return ssh_url;
+  }
+
+  @Loading(() => `set remote url...`)
+  private async setRemoteOrigin(gitUrl: string) {
+    await execa('git', ['remote', 'add', 'origin', gitUrl]);
   }
 
   async onErrorBefore() {

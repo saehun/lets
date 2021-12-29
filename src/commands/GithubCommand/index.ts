@@ -2,7 +2,6 @@ import { Command, Option } from 'clipanion';
 import { loadGithubConfig } from '../../core/config/github.config';
 import { HandleKnownException } from '../../core/decorators/HandleKnownException';
 import { createGithubClient } from '../../core/github/client';
-import { CommitTask } from '../../core/task/commit.task';
 import { CreateRepositoryTask } from '../../core/task/create-repository.task';
 import { GreetingTask } from '../../core/task/greeting.task';
 import { PushTask } from '../../core/task/push.task';
@@ -36,7 +35,6 @@ export class GithubCommand extends Command {
           repositoryName,
         })
       )
-      .register(new CommitTask('Initialize'))
       .register(new PushTask('origin', 'master'))
       .register(new GreetingTask({ type: 'github', url: `https://github.com/${owner}/${repositoryName}` }))
       .run();
