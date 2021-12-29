@@ -1,9 +1,9 @@
 {
-  "name": "create",
+  "name": "lets",
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
-  "repository": "minidonut/create",
+  "repository": "minidonut/lets",
   "scripts": {
     "build": "tsc",
     "postbuild": "scripts/register.sh",
@@ -73,6 +73,6 @@
     "rimraf": "^3.0.2"
   },
   "bin": {
-    "create": "dist/index.js"
+    "lets": "dist/index.js"
   }
 }

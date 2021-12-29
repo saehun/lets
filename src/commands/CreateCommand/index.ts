@@ -6,12 +6,13 @@ import { TemplateTask } from '../../core/task/template.task';
 import { TemplateLoader } from '../../core/template/template.loader';
 import { ask } from '../../utils/prompt.utils';
 
-export class NewCommand extends Command {
-  static paths = [['new']];
+export class CreateCommand extends Command {
+  static paths = [['create']];
   static usage = Command.Usage({
     category: 'scaffold',
     description: 'Scaffold new project',
     details: `If you omit 'name' or 'template' arguments, it will turn into interactive prompt and ask you some questions`,
+    examples: [['Generate `my-app` project', 'lets create ts-app my-app']],
   });
 
   template = Option.String({ required: false });
