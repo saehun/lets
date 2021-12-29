@@ -1,4 +1,4 @@
-import { TaskFailureError, TaskNotAvailableError } from '../error';
+import { TaskNotAvailableError } from '../error';
 import { Task } from './task';
 
 export class TaskRunner {
@@ -27,10 +27,10 @@ export class TaskRunner {
         await task.execute();
       }
     } catch (e) {
-      for (const onError of onErrorStack) {
+      for (const onError of onErrorStack.reverse()) {
         await onError();
       }
-      throw new TaskFailureError(e);
+      throw e;
     }
   }
 }

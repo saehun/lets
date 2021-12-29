@@ -28,12 +28,6 @@ export class TaskNotAvailableError extends BaseError {
   }
 }
 
-export class TaskFailureError extends BaseError {
-  constructor(e: any) {
-    super(e.message);
-  }
-}
-
 export function handleErrorAndExit(e: any): never {
   if (e instanceof BaseError) {
     console.error(e.message);
