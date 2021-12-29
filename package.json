@@ -65,6 +65,7 @@
     "dotenv": "^10.0.0",
     "execa": "^5",
     "fs-extra": "^10.0.0",
+    "got": "^11",
     "handlebars": "^4.7.7",
     "node-peco": "^0.1.6",
     "ora": "^5",
