@@ -18,3 +18,10 @@ yarn-error.log
 
 # Ignore env
 .env
+.envrc
+
+# Ignore terraform related
+.terraform
+
+# lambda archive
+lambda.zip

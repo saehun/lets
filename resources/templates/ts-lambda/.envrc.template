@@ -1,0 +1,12 @@
+export AWS_REGION=
+export AWS_PROFILE=
+
+export AWS_LAMBDA_FUNCTION_NAME=
+export AWS_LAMBDA_BUCKET=
+export AWS_LAMBDA_KEY="$AWS_LAMBDA_FUNCTION_NAME/lambda.zip"
+
+# Terraform variable assignments
+export TF_VAR_aws_region=$AWS_REGION
+export TF_VAR_lambda_function_name=$AWS_LAMBDA_FUNCTION_NAME
+export TF_VAR_s3_lambda_bucket=$AWS_LAMBDA_BUCKET
+export TF_VAR_s3_lambda_key=$AWS_LAMBDA_KEY

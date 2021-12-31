@@ -21,6 +21,7 @@
     "email": "nycom13@gmail.com"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.89",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.9.4",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
