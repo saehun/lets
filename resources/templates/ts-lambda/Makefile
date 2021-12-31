@@ -18,5 +18,5 @@ clean:
 	rm ./lambda.zip
 	npm ci
 
-all: prelare build package deploy clean
+all: prepare build package upload deploy clean
 	@echo "Done"
