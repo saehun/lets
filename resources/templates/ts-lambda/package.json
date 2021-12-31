@@ -14,7 +14,8 @@
     "lint": "eslint . --ext .js,.ts",
     "start": "ts-node src/index.ts",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
-    "start:debug": "node --require ts-node/register --inspect-brk src/index.ts"
+    "start:debug": "node --require ts-node/register --inspect-brk src/index.ts",
+    "terraform:format": "terraform fmt -write=true -recursive ./infra"
   },
   "author": {
     "name": "Karl Saehun Chung",
