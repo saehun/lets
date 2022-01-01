@@ -22,6 +22,7 @@ yarn-error.log
 
 # Ignore terraform related
 .terraform
+.terraform.lock.hcl
 
 # lambda archive
 lambda.zip
