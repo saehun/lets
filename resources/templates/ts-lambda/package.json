@@ -1,12 +1,12 @@
 {
-  "name": "ts-lambda",
+  "name": "{{project.name}}",
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/minidonut/ts-lambda"
+    "url": "https://github.com/{{github.username}}/{{project.name}}"
   },
   "scripts": {
     "build": "tsc",
@@ -18,8 +18,8 @@
     "terraform:format": "terraform fmt -write=true -recursive ./infra"
   },
   "author": {
-    "name": "Karl Saehun Chung",
-    "email": "nycom13@gmail.com"
+    "name": "{{github.authorname}}",
+    "email": "{{github.email}}"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.89",
