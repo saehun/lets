@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import rimraf from 'rimraf';
+import { TEMPLATE_COPY_IGNORE } from '../../constants';
 import { find, interpolateFile } from '../../utils/file.utils';
 import { Loading } from '../decorators/Loading';
 import { Template } from '../template/template';
@@ -44,7 +45,10 @@ export class TemplateTask implements Task {
 
   @Loading(() => `copy project files`)
   private async copy(sourcePath: string, targetPath: string) {
-    await fs.copy(sourcePath, targetPath, { recursive: true, filter: src => !src.includes('node_modules') });
+    await fs.copy(sourcePath, targetPath, {
+      recursive: true,
+      filter: src => !TEMPLATE_COPY_IGNORE.some(token => src.includes(token)),
+    });
   }
 
   @Loading((args: any) => `remove ${args[0]}`)
