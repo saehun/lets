@@ -16,3 +16,7 @@ dist
 
 # Use npm
 yarn.lock
+
+lambda.zip
+
+.terraform/
