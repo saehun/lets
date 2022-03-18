@@ -6,7 +6,7 @@ Scaffolding, auto generating CLI for personal use. For those who want to use thi
 ```sh
 git clone git@github.com:minidonut/lets.git
 cd lets
-yarn install && yarn build && yarn link
+pnpm install && pnpm build && pnpm link --global
 
 cp .env.template .env # you need to fill variables
 
