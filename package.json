@@ -5,8 +5,7 @@
   "license": "MIT",
   "repository": "minidonut/lets",
   "scripts": {
-    "build": "tsc",
-    "postbuild": "scripts/register.sh",
+    "build": "tsc && scripts/register.sh",
     "test": "NODE_ENV=test jest",
     "lint": "eslint . --ext .js,.ts",
     "start": "ts-node src/index.ts",
@@ -76,10 +75,5 @@
   },
   "bin": {
     "lets": "dist/index.js"
-  },
-  "engines": {
-    "yarn": "use pnpm",
-    "npm": "use pnpm",
-    "pnpm": ">= 6"
   }
 }

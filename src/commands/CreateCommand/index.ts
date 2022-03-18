@@ -22,7 +22,9 @@ export class CreateCommand extends Command {
 
   template = Option.String({ required: false });
   name = Option.String({ required: false });
-  packageManager = Option.String('--package-manager', 'npm', { description: '`npm` or `yarn`. default `npm`' });
+  packageManager = Option.String('--package-manager', 'pnpm', {
+    description: '`npm` or `yarn` or `pnpm`. default `pnpm`',
+  });
   git = Option.Boolean('--git', true, { description: 'Initialize git, default `true`' });
 
   @HandleKnownException()

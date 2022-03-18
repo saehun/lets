@@ -10,8 +10,9 @@ dist
 # Ignore Desktop Service Store
 .DS_Store
 
-# Use yarn
+# Use pnpm
 package-lock.json
+yarn.lock
 
 # Ignore yarn error log
 yarn-error.log

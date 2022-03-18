@@ -3,7 +3,7 @@ import { NotFoundException } from '../error';
 import { Task } from './task';
 import * as fs from 'fs-extra';
 
-type PackageManagerBin = 'npm' | 'yarn';
+type PackageManagerBin = 'npm' | 'yarn' | 'pnpm';
 
 export class DependencyInstallTask implements Task {
   constructor(private readonly packageManager: string) {}
@@ -18,8 +18,8 @@ export class DependencyInstallTask implements Task {
     await this.install(this.packageManager);
 
     function assertPackageManager(bin: string): asserts bin is PackageManagerBin {
-      if (!['npm', 'yarn'].includes(bin)) {
-        throw new NotFoundException('package manager', `'npm' | 'yarn'`, bin);
+      if (!['npm', 'yarn', 'pnpm'].includes(bin)) {
+        throw new NotFoundException('package manager', `'npm' | 'yarn' | 'pnpm'`, bin);
       }
     }
   }
@@ -29,7 +29,7 @@ export class DependencyInstallTask implements Task {
   }
 
   private async appendIgnore(bin: PackageManagerBin) {
-    await fs.appendFile('.gitignore', bin === 'yarn' ? ignoreForYarn : ignoreForNpm);
+    await fs.appendFile('.gitignore', bin === 'yarn' ? ignoreForYarn : bin === 'npm' ? ignoreForNpm : ignoreForPnpm);
   }
 
   async onErrorBefore() {
@@ -44,6 +44,7 @@ export class DependencyInstallTask implements Task {
 const ignoreForYarn = `
 # Use yarn
 package-lock.json
+pnpm-lock.yaml
 
 # Ignore yarn error log
 yarn-error.log
@@ -52,4 +53,11 @@ yarn-error.log
 const ignoreForNpm = `
 # Use npm
 yarn.lock
+pnpm-lock.yaml
+`;
+
+const ignoreForPnpm = `
+# Use pnpm
+yarn.lock
+package-lock.json
 `;
