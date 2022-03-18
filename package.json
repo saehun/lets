@@ -76,5 +76,10 @@
   },
   "bin": {
     "lets": "dist/index.js"
+  },
+  "engines": {
+    "yarn": "use pnpm",
+    "npm": "use pnpm",
+    "pnpm": ">= 6"
   }
 }
