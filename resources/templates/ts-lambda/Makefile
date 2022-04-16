@@ -1,10 +1,10 @@
 prepare:
-	npm ci
+	pnpm install --frozen-lockfile
 build:
-	npm run build
+	pnpm build
 package:
 	rm -r node_modules
-	npm ci --only=production
+	pnpm install --frozen-lockfile --prod
 	zip -rq9 lambda.zip node_modules dist
 upload:
 	aws s3 cp ./lambda.zip s3://$(AWS_LAMBDA_BUCKET)/$(AWS_LAMBDA_KEY)
@@ -16,7 +16,7 @@ deploy:
 		--s3-key $(AWS_LAMBDA_KEY) --publish
 clean:
 	rm ./lambda.zip
-	npm ci
+	pnpm install --frozen-lockfile
 
 all: prepare build package upload deploy clean
 	@echo "Done"
