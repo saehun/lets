@@ -15,6 +15,8 @@ make build && make package && make upload
 
 Goto terraform cloud dashboard and create new workspace https://app.terraform.io/app/<USERNAME>/workspaces/new
 
+Set infra/main.ts -> cloud.workspaces.name to your workspace name.
+
 Setup infra
 ```sh
 cd infra
