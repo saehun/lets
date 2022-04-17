@@ -12,6 +12,5 @@
     "experimentalDecorators": true,
     "lib": ["esnext"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["**/*.test.ts"]
+  "include": ["src/**/*", "test/**/*"]
 }
