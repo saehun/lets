@@ -1,9 +1,9 @@
 terraform {
   cloud {
-    organization = "saehun"
+    organization = ""
 
     workspaces {
-      name = "example"
+      name = ""
     }
   }
 

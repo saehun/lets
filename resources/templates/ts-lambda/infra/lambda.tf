@@ -30,6 +30,7 @@ resource "aws_lambda_function" "function" {
   environment {
     variables = {
       NODE_ENV = "production"
+      NODE_OPTIONS = "--enable-source-maps"
     }
   }
 }
