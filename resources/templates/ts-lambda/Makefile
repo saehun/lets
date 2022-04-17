@@ -1,11 +1,15 @@
 prepare:
 	pnpm install --frozen-lockfile
 build:
-	pnpm build
+	npx esbuild \
+		--bundle src/index.ts \
+		--outdir=dist \
+		--outbase=src/ \
+		--tsconfig=tsconfig.build.json \
+		--sourcemap \
+		--platform=node
 package:
-	rm -r node_modules
-	pnpm install --frozen-lockfile --prod
-	zip -rq9 lambda.zip node_modules dist
+	zip -rq9 lambda.zip dist
 upload:
 	aws s3 cp ./lambda.zip s3://$(AWS_LAMBDA_BUCKET)/$(AWS_LAMBDA_KEY)
 deploy:
@@ -16,7 +20,6 @@ deploy:
 		--s3-key $(AWS_LAMBDA_KEY) --publish
 clean:
 	rm ./lambda.zip
-	pnpm install --frozen-lockfile
 
 all: prepare build package upload deploy clean
 	@echo "Done"
