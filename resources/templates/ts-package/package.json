@@ -27,7 +27,7 @@
     "url": "https://github.com/{{github.username}}/{{project.name}}"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.esm.json",
     "test": "NODE_ENV=test jest",
     "lint": "eslint . --ext .js,.ts",
     "start": "ts-node src/index.ts",
