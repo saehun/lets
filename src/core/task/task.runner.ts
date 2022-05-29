@@ -3,6 +3,7 @@ import { Task } from './task';
 
 export class TaskRunner {
   private readonly tasks: Task[] = [];
+  private readonly onErrorHandlers: Array<() => Promise<void>> = [];
 
   register(task: Task): TaskRunner {
     this.tasks.push(task);
@@ -19,20 +20,22 @@ export class TaskRunner {
       }
     }
 
-    const onErrorStack: Array<() => Promise<void>> = [];
-
     try {
       for (const task of this.tasks) {
-        onErrorStack.push(task.onErrorBefore.bind(task));
+        this.onErrorHandlers.push(() => task.onErrorBefore());
         await task.execute();
-        onErrorStack.pop();
-        onErrorStack.push(task.onErrorAfter.bind(task));
+        this.onErrorHandlers.pop();
+        this.onErrorHandlers.push(() => task.onErrorAfter());
       }
     } catch (e) {
-      for (const onError of onErrorStack.reverse()) {
-        await onError();
-      }
+      await this.onError();
       throw e;
+    }
+  }
+
+  private async onError() {
+    for (const onError of this.onErrorHandlers.reverse()) {
+      await onError();
     }
   }
 }
