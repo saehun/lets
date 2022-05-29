@@ -1,0 +1,86 @@
+{
+  "name": "{{project.name}}",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": "./dist/index.js",
+      "require": "./dist/index.js",
+      "es2015": "./esm/index.js",
+      "default": "./esm/index.js"
+    },
+    "./*": {
+      "types": "./dist/*/index.d.ts",
+      "node": "./dist/*/index.js",
+      "require": "./dist/*/index.js",
+      "es2015": "./esm/*/index.js",
+      "default": "./esm/*/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/{{github.username}}/{{project.name}}"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "NODE_ENV=test jest",
+    "lint": "eslint . --ext .js,.ts",
+    "start": "ts-node src/index.ts",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "start:debug": "node --require ts-node/register --inspect-brk src/index.ts"
+  },
+  "author": {
+    "name": "{{github.authorname}}",
+    "email": "{{github.email}}"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "@types/node": "^17.0.36",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "eslint": "^8.16.0",
+    "jest": "^28.1.0",
+    "jest-mock-extended": "^2.0.6",
+    "prettier": "^2.6.0",
+    "ts-jest": "^28.0.3",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
+  },
+  "files": [
+    "src",
+    "esm",
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "LICENSE",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "eslintIgnore": [
+    "*.js",
+    "dist"
+  ],
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "testMatch": [
+      "**/*.test.(ts|js)"
+    ],
+    "transform": {
+      "^.+.(ts|tsx)$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "preset": "ts-jest"
+  }
+}

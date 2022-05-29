@@ -1,12 +1,18 @@
 - ramda:
-    devDependencies: false,
+    devDependencies: false
     type: "@types/ramda"
 - axios:
-    devDependencies: false,
-    type: null,
+    devDependencies: false
+    type: null
 - rxjs:
-    devDependencies: false,
-    type: null,
+    devDependencies: false
+    type: null
 - "@sindresorhus/is":
-    devDependencies: false,
-    type: null,
+    devDependencies: false
+    type: null
+- got:
+    devDependencies: false
+    type: null
+- ts-pattern:
+    devDependencies: false
+    type: null
