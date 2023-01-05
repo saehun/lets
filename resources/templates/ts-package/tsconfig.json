@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es6",
-    "noImplicitAny": true,
+    "module": "commonjs",
+    "lib": ["es2021"],
     "moduleResolution": "node",
-    "strictNullChecks": true,
+    "strict": true,
+    "allowJs": true,
+    "skipLibCheck": true,
     "sourceMap": true,
-    "outDir": "dist",
     "declaration": true,
-    "emitDecoratorMetadata": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "lib": ["esnext"]
+    "strictPropertyInitialization": false
   },
-  "include": ["src/**/*"]
+  "include": ["src"]
 }
