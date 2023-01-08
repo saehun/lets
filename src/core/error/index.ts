@@ -6,6 +6,12 @@ export class BaseError extends Error {
   }
 }
 
+export class UserError extends BaseError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
 export class AbortException extends BaseError {
   constructor(message?: string) {
     super(message ?? `aborted, bye bye 👋`);

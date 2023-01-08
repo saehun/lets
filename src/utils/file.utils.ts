@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra';
 import { compile } from 'handlebars';
 import * as path from 'path';
+import { ensureProcessWorkingDirectoryHas } from './process.util';
 
 export async function interpolateFile(path: string, arg: Record<string, any>): Promise<void> {
   const file = await fs.readFile(path, { encoding: 'utf-8' });
@@ -39,3 +40,8 @@ export const find = async (startPath: string, ignore: string | RegExp = ''): Pro
   }
   return result;
 };
+
+export function loadPackageJson(): Record<string, any> {
+  ensureProcessWorkingDirectoryHas('package.json');
+  return fs.readJSONSync('package.json');
+}

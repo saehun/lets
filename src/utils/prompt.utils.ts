@@ -5,12 +5,13 @@ export function onAboart(): never {
   throw new AbortException();
 }
 
-export async function ask(message: string) {
+export async function ask(message: string, initial = '') {
   const { result } = await prompts(
     {
       type: 'text',
       name: 'result',
       message,
+      initial,
     },
     { onCancel: onAboart }
   );

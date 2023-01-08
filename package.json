@@ -59,15 +59,16 @@
     "prompts": "^2.4.2",
     "ramda": "^0.28.0",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "sort-package-json": "^1.57.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@types/http-cache-semantics": "^4.0.1",
-    "@types/ramda": "^0.28.15",
     "@types/jest": "^29.2.5",
     "@types/node": "^18.11.18",
     "@types/prompts": "^2.4.2",
+    "@types/ramda": "^0.28.15",
     "@types/rimraf": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
